@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 140px;
+        }
+    </style>
+</head>
+<body>
+    <table id="plansza">
+        <tr>
+            <td ><img id="a1" src="img/0.jpg"></td>
+            <td ><img id="a2" src="img/0.jpg"></td>
+            <td ><img id="a3" src="img/0.jpg"></td>
+            <td ><img id="a4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td ><img  id="b1" src="img/0.jpg"></td>
+            <td ><img id="b2" src="img/0.jpg"></td>
+            <td ><img id="b3" src="img/0.jpg"></td>
+            <td ><img id="b4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td><img id="c1" src="img/0.jpg"></td>
+            <td ><img id="c2" src="img/0.jpg"></td>
+            <td><img  id="c3" src="img/0.jpg"></td>
+            <td><img  id="c4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td><img id="d1" src="img/0.jpg"></td>
+            <td ><img id="d2" src="img/0.jpg"></td>
+            <td><img  id="d3" src="img/0.jpg"></td>
+            <td><img  id="d4" src="img/0.jpg"></td>
+        </tr>
+    </table>
+    <script>
+        let check = 0;
+        a1.onclick = function klik(){
+            document.getElementById("a1").src="img/3.jpg"
+            check = check + 1
+            if (check>2){
+                document.getElementById("a1").src="img/0.jpg"
+                check=0;
+            }
+        }
+        a2.onclick = function klik(){
+            document.getElementById("a2").src="img/8.jpg"
+            check = check + 1
+            if (check>2){
+                document.getElementById("a2").src="img/0.jpg"
+                check=0;
+            }
+        }
+        a3.onclick = function klik(){
+           document.getElementById("a3").src="img/3.jpg"
+           check = check + 1
+            if (check>2){
+                document.getElementById("a3").src="img/0.jpg"
+                check=0;
+            }
+        }
+        a4.onclick = function klik(){
+            document.getElementById("a4").src="img/1.jpg"
+        }
+        b1.onclick = function klik(){
+            document.getElementById("b1").src="img/8.jpg"
+        }
+        b2.onclick = function klik(){
+
+            document.getElementById("b2").src="img/5.jpg"
+        }
+        b3.onclick = function klik(){
+           document.getElementById("b3").src="img/2.jpg"
+        }
+        b4.onclick = function klik(){
+            document.getElementById("b4").src="img/4.jpg"
+        }
+        c1.onclick = function klik(){
+            document.getElementById("c1").src="img/7.jpg"
+        }
+        c2.onclick = function klik(){
+
+            document.getElementById("c2").src="img/1.jpg"
+        }
+        c3.onclick = function klik(){
+           document.getElementById("c3").src="img/4.jpg"
+        }
+        c4.onclick = function klik(){
+            document.getElementById("c4").src="img/6.jpg"
+        }
+        d1.onclick = function klik(){
+            document.getElementById("d1").src="img/5.jpg"
+        }
+        d2.onclick = function klik(){
+
+            document.getElementById("d2").src="img/2.jpg"
+        }
+        d3.onclick = function klik(){
+           document.getElementById("d3").src="img/7.jpg"
+        }
+        d4.onclick = function klik(){
+            document.getElementById("d4").src="img/6.jpg"
+        }
+    </script>
+</body>
+</html>

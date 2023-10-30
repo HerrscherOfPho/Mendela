@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="Kira.png" style="width: 400px;">
+    <script>
+        
+        const kira = document.getElementsByTagName("img");
+        let w = kira[0].style.width;
+        let babajaga = true
+            setInterval(() =>{
+                w=parseInt(w);
+                if(babajaga) w+=10;
+                if(!babajaga) w-=10;
+                if(w>1000 || w<200) babajaga = !babajaga;
+                kira[0].style.width = w + "px";
+            },50)
+
+    
+   </script>
+</body>
+</html>
