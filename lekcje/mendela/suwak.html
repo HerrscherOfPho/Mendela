@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport">
+    <title>Document</title>
+    <script src="jq.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            overflow: hidden;
+        }
+
+        #left {
+            height: 100vh;
+            background-color: aliceblue;
+        }
+
+        #center {
+            min-width: 2vw;
+            width: 2vw;
+            height: 100vh;
+            background-color: blue;
+            cursor: grabbing
+        }
+
+
+        #right {
+            height: 100vh;
+            background-color: papayawhip;
+        }
+
+        #edge {
+            height: 100vh;
+            width: 1px;
+            position: absolute;
+            right: -1px;
+        }
+    </style>
+    <script>
+
+        //gotowosc
+        $(document).ready(function () {
+            //gotowosc
+            $("#left").width('49vw')
+            $("#right").width('49vw')
+            let mousedown = false
+            $('#center').on("mousedown", function (e) {
+                mousedown = true
+            })
+            $(window).on("mouseup", function (e) {
+                mousedown = false
+            })
+            $(window).on("mousemove", function (e) {
+                let x = e.clientX
+                let x2 = $(window).width() - e.clientX
+                if (mousedown) {
+                    $("#left").width(x)
+                    $("#right").width(x2)
+                }
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    <div id="left"></div>
+    <div id="center"></div>
+    <div id="right"></div>
+    <div id="edge"></div>
+</body>
+
+</html>

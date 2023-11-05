@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //Zadanie 1
+        document.write("Witaj JavaScript<br>")
+        for(let i=-111;i<=111;i++){
+            document.write(i+" ") //<br> zamiast spacji ale wkurza
+        }
+        document.write("<hr>")
+        for(let j=50;j>0;j--){
+            document.write(j+" ")
+            j=j-2
+        }
+        document.write("<hr>")
+        for(let k=50;k>=10;k--){
+            if(k>=40 || k<=20){
+                document.write(k)
+            }
+        }
+        //zadanie 2
+        for(let l=-30;l<40;l++){
+            if(l>=14 || l<=5){
+                if(l%2==0){console.log(l)}
+            }
+        }
+        console.log("<======================================================>")
+        for(let m=-20;m<40;m++){
+            if(m>=12 || m<=3){
+                if(m%2!=0){console.log(m)}
+            }
+        }
+        console.log("<======================================================>")
+        for(let n=-100;n<41;n++){
+            if(n>=12 || n<=-50){
+                if(n%3==0){console.log(n)}
+            }
+        }
+        //Zadanie 3
+        document.write("<hr><hr>")
+        let licz = prompt("Podaj liczbę")
+        for (let o=0;o<licz;o++){
+            document.write("X")
+        }
+        document.write("<hr>")
+        let silnia=1
+        for(let p=1;p<=licz;p++){
+            silnia=silnia*p
+        }
+        document.write(silnia)
+        document.write("<hr>")
+        let sumanieparzystych=0
+        for(let q=0;q<=licz;q++){
+            if(q%2!=0){
+                sumanieparzystych=sumanieparzystych+q
+            }
+        document.write(sumanieparzystych)
+        }
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        //A
+    </script>
+</head>
+<body>
+
+</body>
+</html>

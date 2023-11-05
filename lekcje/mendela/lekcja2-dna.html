@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>"ttttaaatgccacgatacatgctagcaatgcataacatcattcgctcagccatatgttctctaagaattagttgagtgagaacggagggcttgttacacatataatgcgtagggcgagtcaactttgaaactccctcttaggtggaagtgcataacagcggctgtgtagatttctcagatttacttaatcatgccgaggtcgccgtttggcatttgcggccagcttcgattcccgtccatctctcaatttcggagtgcatgaatgcataagaactgattgacttgacaacatatcttgccaccac"</p>
+    <script>
+        //let dna = prompt ("dawaj swoje dna")
+        let dna = prompt ("Podaj dna")
+        let dna2 = dna.replace(/\s/g, '')
+        let dna3 = dna2.toUpperCase()
+        let dna4 = (dna3.match(/.{1,3}/g)).join(' ')
+        let dna5 = dna4.replaceAll("ATG", '<b style="color: green">ATG</b>')
+        let dna6 = dna5.replaceAll("TAA", '<span style="background-color: yellow">TAA</span>')
+        dna6 = dna6.replaceAll("TAG", '<span style="background-color: yellow">TAG</span>')
+        dna6 = dna6.replaceAll("TGA", '<span style="background-color: yellow">TGA</span>')
+        let dna7 = ""
+        for(i=0;i<dna6.length;i++){
+            switch(dna6[i]){
+                case "T":
+                    dna7 += "A"
+                    break;
+                case "A":
+                    dna7 += "T"
+                    break;
+                case "C":
+                    dna7 += "G"
+                    break;
+                case "G":
+                    dna7 += "C"
+                    break;
+                case " ":
+                    dna7 += " "
+                    break;
+            }
+        }
+        let arraydna = dna4.split(' ')
+        let countstats = []
+        let gen = []
+        let amount = []
+        //arraydna.forEach(Element => [countstats[Element] = (countstats[Element] || 0) + 1])
+        // let vals = Object.values(countstats).sort().reverse().forEach((Object.values(countstats))=>{
+        //     console.log(Object.values(countstats) + Object.keys(countstats))
+        // })
+        //Object.values(countstats).sort().reverse()
+        // for(j=0;j<arraydna.length;j++){
+        //     if(gen in arraydna[i]){
+        //         countstats["amount"] = 
+        //     }
+        for(j=0;j<arraydna.length;j++){
+            if(gen.includes(arraydna[j])){
+                amount[gen.indexOf(arraydna[j])] = amount[gen.indexOf(arraydna[j])]+1
+            }else{
+                gen.push(arraydna[j])
+                amount.push(1)
+            }
+        }
+        for(k=0;k<gen.length;k++){
+            countstats.push({"gen": gen[k], "amount": amount[k]})
+        }
+        countstats.sort(function (a, b) { return a.amount - b.amount }).reverse()
+        document.write(dna6+"<hr>"+dna7)
+        document.write("<hr>")
+        let check = 0
+        r = Math.floor(Math.random() * 256);
+        g = Math.floor(Math.random() * 256);
+        b = Math.floor(Math.random() * 256);
+        for(l=0;l<countstats.length;l++){
+            if(check<5){
+                document.write('<span style="background-color:rgb('+r+','+g+','+b+')">'+countstats[l].gen +" " +countstats[l]. amount +"</span>" +"<br>")
+                check = check+1
+            }else{
+                check = 0
+                r = Math.floor(Math.random() * 256);
+                g = Math.floor(Math.random() * 256);
+                b = Math.floor(Math.random() * 256);}
+        }
+    </script>
+</body>
+</html>

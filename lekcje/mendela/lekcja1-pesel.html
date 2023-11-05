@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let pesel = prompt("Podaj pesel")
+        if(pesel.length!=11){
+            alert("Zła ilość znaków")
+        }else{
+            let arr = []
+            for(i=0;i<pesel.length;i++){
+                arr.push(parseInt(pesel[i]))
+            }
+            let sumatestowa = (arr[0] + arr[1]*3 + arr[2]*7 + arr[3]*9 + arr[4] + arr[5]*3 + arr[6]*7 + arr[7]*9 + arr[8] + arr[9]*3 + arr[10])
+            if(sumatestowa%10!=0){
+                alert("niepoprawny pesel")
+            }else{
+                let plec = arr[9]
+                if(plec%2==0){
+                    document.write("Płeć: Kobieta")
+                }else{
+                    document.write("Płeć: Mężczyzna")
+                }
+                document.write("<br>")
+                let rocznik = 0
+                let miesiac = parseInt(arr[2].toString()+arr[3].toString())
+                let dzien = arr[4].toString() + arr[5].toString()
+                switch(arr[2]){
+                    case 0:
+                    case 1:
+                        rocznik = 19
+                        break;
+                    case 2:
+                    case 3: 
+                        rocznik = 20
+                        miesiac = miesiac - 20
+                        break;
+                    case 4:
+                    case 5:
+                        rocznik = 21
+                        miesiac = miesiac - 40
+                        break;
+                    case 6:
+                    case 7:
+                        rocznik = 22
+                        miesiac = miesiac - 60
+                        break;
+                    case 8:
+                    case 9:
+                        rocznik = 18
+                        miesiac = miesiac - 80
+                        break;
+                }
+                rok = rocznik.toString() + arr[0].toString() + arr[1].toString()
+                document.write(dzien+"/"+miesiac+"/"+rok)
+            }
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

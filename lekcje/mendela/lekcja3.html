@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="Kira.png" style="width: 400px;">
+    <input type="text" id="inpt">
+    <script>
+        //Zadanie 1
+        // const kira = document.getElementsByTagName("img");
+        // let w = kira[0].style.width;
+        // let babajaga = true
+        //     setInterval(() =>{
+        //         w=parseInt(w);
+        //         if(babajaga) w+=10;
+        //         if(!babajaga) w-=10;
+        //         if(w>1000 || w<200) babajaga = !babajaga;
+        //         kira[0].style.width = w + "px";
+        //     },50)
+        //Zadanie 2
+        // let tekst = "Long Live Herrscher of Sentience"
+        // let arr=[]
+        // for(i=0;i<tekst.length;i++){
+        //     arr.push(tekst[i])
+        // }
+        //     function senti(){
+        //         arr.push(arr.shift())
+        //         console.log(arr)
+        //         document.getElementById("t").innerHTML += arr.toString()
+        //     }
+        // let check = 0
+        // interval = setInterval(senti, 1000)
+        // if(check==3){
+        //     clearInterval(interval)
+        //     check = check + 1
+        // }else{
+        //     senti
+        // }
+        //document.write(arr.toString().replaceAll(",",""))
+        let inpt = document.getElementById("inpt")
+
+        let tekst = " Long Live Herrscher of Sentience    "
+        let senti = function () {
+            start = tekst.slice(0, 1)
+            tekst = tekst.slice(1, tekst.length) + start
+            inpt.placeholder = tekst
+        }
+        setInterval(senti, 10)
+        
+   </script>
+</body>
+</html>
