@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 140px;
+        }
+    </style>
+</head>
+<body>
+    <table id="plansza">
+        <tr>
+            <td ><img id="a1" src="img/0.jpg"></td>
+            <td ><img id="a2" src="img/0.jpg"></td>
+            <td ><img id="a3" src="img/0.jpg"></td>
+            <td ><img id="a4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td ><img  id="b1" src="img/0.jpg"></td>
+            <td ><img id="b2" src="img/0.jpg"></td>
+            <td ><img id="b3" src="img/0.jpg"></td>
+            <td ><img id="b4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td><img id="c1" src="img/0.jpg"></td>
+            <td ><img id="c2" src="img/0.jpg"></td>
+            <td><img  id="c3" src="img/0.jpg"></td>
+            <td><img  id="c4" src="img/0.jpg"></td>
+        </tr>
+        <tr>
+            <td><img id="d1" src="img/0.jpg"></td>
+            <td ><img id="d2" src="img/0.jpg"></td>
+            <td><img  id="d3" src="img/0.jpg"></td>
+            <td><img  id="d4" src="img/0.jpg"></td>
+        </tr>
+    </table>
+    <script>
+        let obrazki = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+        let pozycja =[]
+        let check1 = ""
+        let check2 = ""
+        function clear(){
+            check1=""
+            check2=""
+            pozycja=[]
+        }
+
+        const els = document.querySelectorAll("#plansza img")
+        console.log(els);
+        for(let i=0; i<els.length; i++){
+        els[i].onclick = function klik(klak){
+            console.log("AAAAAA!!!", i )
+            this.src="img/"+obrazki[i]+".jpg"
+            
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log("poz",pozycja)
+            if(pozycja.length>1){
+                console.log("aaa",check1, check2)
+                if(check1===check2){
+                    console.log("lol",pozycja[0],document.getElementById(pozycja[0]))
+                    document.getElementById(pozycja[0]).style.color = "black"
+                    document.getElementById(pozycja[1]).style.pointerEvents = "none"
+                    //document.getElementById(pozycja[0]).onclick=null;
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+    }
+        /*
+        a2.onclick = function klik(klak){
+            this.src="img/1.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        a3.onclick = function klik(klak){
+            this.src="img/2.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        a4.onclick = function klik(klak){
+            this.src="img/2.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        b1.onclick = function klik(klak){
+            this.src="img/3.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        b2.onclick = function klik(klak){
+            this.src="img/3.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        b3.onclick = function klik(klak){
+            this.src="img/4.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        b4.onclick = function klik(klak){
+            this.src="img/4.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        c1.onclick = function klik(klak){
+            this.src="img/5.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        c2.onclick = function klik(klak){
+            this.src="img/5.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        c3.onclick = function klik(klak){
+            this.src="img/6.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        c4.onclick = function klik(klak){
+            this.src="img/6.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        d1.onclick = function klik(klak){
+            this.src="img/7.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        d2.onclick = function klik(klak){
+            this.src="img/7.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        d3.onclick = function klik(klak){
+            this.src="img/8.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        d4.onclick = function klik(klak){
+            this.src="img/8.jpg"
+            pozycja.push(this.id)
+            if(check1===""){
+                check1 = this.src
+            }else{
+                check2 = this.src
+            }
+            console.log(pozycja)
+            if(pozycja.length>1){
+                if(check1===check2){
+                    klak.stopPropagation()
+                    clear()
+                }else{
+                    const timeout = setTimeout(nope, 400)
+                    function nope(){
+                        document.getElementById(pozycja[0]).src="img/0.jpg"
+                        document.getElementById(pozycja[1]).src="img/0.jpg"
+                        clear()
+                    }
+                    
+                }
+            }
+        }
+        */
+    </script>
+</body>
+</html>
