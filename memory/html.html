@@ -8,9 +8,39 @@
         img{
             width: 140px;
         }
+        #wynikpole{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: cornflowerblue;
+            top:0;
+            left:0;
+            display: none;
+        }
+        #menuglowne{
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: cornflowerblue;
+            top:0;
+            left:0;
+        }
+        .start{
+            width: 500px;
+            height: 80px;
+            margin: auto;
+            margin-top: 10vh;
+            display: block;
+        }
     </style>
 </head>
 <body>
+    <div id="menuglowne">
+        <button class="start" id="start30">30s</button>
+        <button class="start" id="start60">60s</button>
+        <button class="start" id="start90">90s</button>
+    </div>
+    <h1 id="timer"></h1>
     <table id="plansza">
         <tr>
             <td ><img id="a1" src="img/0.jpg"></td>
@@ -37,59 +67,88 @@
             <td><img  id="d4" src="img/0.jpg"></td>
         </tr>
     </table>
+    <!-- div z wiadomością -->
+    <div id="wynikpole">
+        <h1 class="start" id="wyniktekst">Wygrałeś!</h1>
+        <!-- to do zmiany później -->
+        <button class="start" id="restartbutton" onClick="window.location.reload();">Zacznij ponownie</button>
+    </div>
     <script>
-        // let check = 0;
-        // a1.onclick = function klik(){
-        //     document.getElementById("a1").src="img/3.jpg"
-        // }
-        // a2.onclick = function klik(){
-        //     document.getElementById("a2").src="img/8.jpg"
-        // }
-        // a3.onclick = function klik(){
-        //    document.getElementById("a3").src="img/3.jpg"
-        // }
-        // a4.onclick = function klik(){
-        //     document.getElementById("a4").src="img/1.jpg"
-        // }
-        // b1.onclick = function klik(){
-        //     document.getElementById("b1").src="img/8.jpg"
-        // }
-        // b2.onclick = function klik(){
+        // losowanie ustawienia
+        let obrazki = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+        for(let i=0; i<obrazki.length;i++){
+            let j = Math.floor(Math.random() * (i + 1));
+            let x = obrazki[i];
+            obrazki[i] = obrazki[j];
+            obrazki[j]=x;
+        }
+        
+        let pozycja =[]
+        let check1 = ""
+        let check2 = ""
+        let wynikpolecheck = 0
+        let pierwszy = true;
+        //czyszczenie danych
+        function clear(){
+            check1=""
+            check2=""
+            pozycja=[]
+        }
 
-        //     document.getElementById("b2").src="img/5.jpg"
-        // }
-        // b3.onclick = function klik(){
-        //    document.getElementById("b3").src="img/2.jpg"
-        // }
-        // b4.onclick = function klik(){
-        //     document.getElementById("b4").src="img/4.jpg"
-        // }
-        // c1.onclick = function klik(){
-        //     document.getElementById("c1").src="img/7.jpg"
-        // }
-        // c2.onclick = function klik(){
-
-        //     document.getElementById("c2").src="img/1.jpg"
-        // }
-        // c3.onclick = function klik(){
-        //    document.getElementById("c3").src="img/4.jpg"
-        // }
-        // c4.onclick = function klik(){
-        //     document.getElementById("c4").src="img/6.jpg"
-        // }
-        // d1.onclick = function klik(){
-        //     document.getElementById("d1").src="img/5.jpg"
-        // }
-        // d2.onclick = function klik(){
-
-        //     document.getElementById("d2").src="img/2.jpg"
-        // }
-        // d3.onclick = function klik(){
-        //    document.getElementById("d3").src="img/7.jpg"
-        // }
-        // d4.onclick = function klik(){
-        //     document.getElementById("d4").src="img/6.jpg"
-        // }
-    </script>
-</body>
-</html>
+        //czasy 30, 60, 90
+        for(let czas=1;czas<=3;czas++){
+            let przycisk = document.getElementById("start"+czas*30)
+            przycisk.onclick = function start(){
+                document.getElementById("menuglowne").style.display = "none";
+                document.getElementById("timer").innerHTML = czas*30;
+                const els = document.querySelectorAll("#plansza img")
+                for(let i=0; i<els.length; i++){
+                //on click zmiana na obrazki
+                    els[i].onclick = function klik(klak){
+                        this.src="img/"+obrazki[i]+".jpg"
+                        //zapisuje nazwe obrazka i porównuje
+                        pozycja.push(this.id)
+                        if(check1===""){
+                            check1 = this.src
+                        }else{
+                            check2 = this.src
+                        }
+                        if(pozycja.length>1){
+                            if(check1===check2){
+                                document.getElementById(pozycja[0]).style.pointerEvents = "none"
+                                document.getElementById(pozycja[1]).style.pointerEvents = "none"
+                                wynikpolecheck = wynikpolecheck+1
+                                clear()
+                            }else{
+                                const timeout = setTimeout(nope, 400)
+                                function nope(){
+                                    document.getElementById(pozycja[0]).src="img/0.jpg"
+                                    document.getElementById(pozycja[1]).src="img/0.jpg"
+                                    clear()
+                                }
+                            }
+                        }                    
+                        if(wynikpolecheck==8){
+                            document.getElementById("wynikpole").style.display = "block";}
+                        if(pierwszy==true){
+                            pierwszy=false;
+                            let starttimera = new Date().getTime();
+                            let koniectimera = starttimera + (czas*30000);
+                            let x = setInterval(function(){
+                                let now = new Date().getTime();
+                                let roznica = koniectimera - now;
+                                let minutes = Math.floor((roznica % (1000 * 60 * 60)) / (1000 * 60));
+                                let seconds = Math.floor((roznica % (1000 * 60)) / 1000);
+                                let miliseconds = Math.floor(roznica % 1000);
+                                document.getElementById("timer").innerHTML = minutes + ":" + seconds + ":" + miliseconds;
+                                if (roznica < 0) {
+                                    clearInterval(x);
+                                    document.getElementById("wyniktekst").innerHTML = "Koniec czasu"
+                                    document.getElementById("wynikpole").style.display = "block";
+                                }
+                            }, 1);
+                        }
+                    }
+                }
+            }
+        }
