@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pole{
+            height: 50px;
+            width: 50px;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        /*
+        let t="";
+        t+='<table class="plansza">'
+            for(i=0;i<10;i++){
+                t+='<tr class="'+i+'">'
+                for(j=0;j<10;j++){
+                    console.log(" "+i+j+" ")
+                    t+=('<td id="'+i+j+'" class="pole">')
+                }
+                t+="</tr>"
+            }
+        t+="</table>";
+        document.write(t);
+        */
+
+        //for tworzący tabelkę
+        const t=document.createElement("table");
+        let tablicaxy = [] //tablica współrzędnych
+        for(i=0;i<10;i++){
+                const tr = document.createElement("tr");
+                for(j=0;j<10;j++){
+                    const td=document.createElement("td")
+                    let nrid = ''+i+j
+                    td.id=nrid
+                    td.classList.add("pole")
+                    tr.append(td);
+                    //dodajemy dane do tablicy współrzędnych
+                    tablicaxy[nrid]=0
+
+                }
+                t.append(tr);
+            }
+            document.body.append(t);
+            //i => y, j => x
+        
+        // //losowanie jednego pola
+        // let x = Math.floor(Math.random()*10)
+        // let y = Math.floor(Math.random()*10)
+        // let z = ''+x+y
+        // //pokolorowanie pola
+        // document.getElementById(z).style.backgroundColor = "cornflowerblue"
+        // tablicaxy[z]=1
+
+        //ustawienie 4masztowca
+            let x41 = Math.floor(Math.random()*10)
+            let y41 = Math.floor(Math.random()*10)
+            let z41 = ''+y41+x41
+        let keys = Object.keys(tablicaxy)
+        document.getElementById(z41).style.backgroundColor = "cornflowerblue"
+        tablicaxy[z41]=1
+        //losowanie kolejnej pozycji
+        // const losowanie42 = function(){
+        //PEWNIE TRZEBA BĘDZIE TO PRZEROBIĆ NA CHECK TABLICY, POWODZENIA, i czemu nie zrobisz z tablicy obiektu?
+            let horver = Math.floor(Math.random()*2)//pionowo(0), poziomo(1)
+            let direction = Math.floor(Math.random()*2)//lewo/góra(0), prawo/dół(1)
+            let x42 = 0;
+            let y42 = 0;
+            if(horver==0){
+                x42 = x41
+                if(direction==0){
+                    if(keys.includes(""+(y41-1)+x42)==true){
+                        y42 = y41-1
+                    }else{
+                        y42 = y41
+                        console.log("error")
+                        // return false;
+                    }
+                }else{
+                    if(keys.includes(""+(y41+1)+x42)==true){
+                        y42 = y41+1
+                    }else{
+                        y42 = y41
+                        console.log("error")
+                        // return false;
+                    }
+                }
+            }else{
+                y42 = y41
+                if(direction==0){
+                    if(keys.includes(""+y42+(x41-1))==true){
+                        x42 = x41-1
+                    }else{
+                        x42 = x41
+                        console.log("error")
+                        // return false;
+                    }
+                }else{
+                    if(keys.includes(""+y42+(x41+1))==true){
+                        x42 = x41+1
+                    }else{
+                        x42 = x41
+                        console.log("error")
+                        // return false;
+                    }
+                }
+            }
+            
+            let z42 = ''+y42+x42
+            tablicaxy[z42] = 1;
+            document.getElementById(z42).style.backgroundColor = "cornflowerblue"
+        // }
+        // losowanie42()
+        console.log("pozycja startowa: ", z41, " horver: ", horver, " direction: ", direction, " pozycja końcowa: ", z42)
+        console.log(tablicaxy)
+
+        
+
+        /*for(i=2;i<=4;i++){
+            let horver = Math.floor(Math.random()*2)//pionowo(0), poziomo(1)
+            let direction = Math.floor(Math.random()*2)//lewo/góra(0), prawo/dół(1)
+            let (x4 + i) = 0;
+            let (y4 + i) = 0;
+            if(horver==0){
+                ("" + x4 + i) = (x4 + (i-1))
+                if(direction==0){
+                    (y4 + i) = (y4 + (i-1))-1
+                }else{
+                    (y4 + i) = (y4 + (i-1))+1
+                }
+            }else{
+                (y4 + i) = (y4 + (i-1))
+                if(direction==0){
+                    (x4 + i) = (x4 + (i-1))-1
+                }else{
+                    (x4 + i) = (x4 + (i-1))+1
+                }
+            }
+            let (z4 + i) = ''+(y4 + i)+(x4 + i)
+            document.getElementById((z4 + i)).style.backgroundColor = "cornflowerblue"
+        console.log("startowa", z41, "horver", horver, "końcowa", z42)
+        }*/
+    </script>
+</body>
+</html>
