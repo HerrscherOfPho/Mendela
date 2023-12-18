@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        } 
+        .pice {
+            border: solid 1px;
+            width: 50px;
+            height: 50px;
+            float: left;
+        }
+ 
+        #container {
+            width: 550px;
+        }
+        .snek{
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+<body id="body">
+<div class="head"></div>
+<div id="container"></div>
+<script>
+    const game = {
+        width: 11,
+        height: 11,
+        xstart: 5,
+        ystart: 5,
+        arr: [],
+        init() {
+            this.createPlayfield();
+            this.render();
+        },
+        createPlayfield() {
+            for (let i = 0; i < this.height; i++) {
+                this.arr[i] = []
+                for (let j = 0; j < this.width; j++) {
+                    if (i == 0 || j == 0 || j == this.width - 1 || i == this.height - 1)
+                        this.arr[i][j] = { y: i, x: j, type: -1}
+                    else
+                        this.arr[i][j] = { y: i, x: j, type: 0}
+                }
+            }
+        },
+        render() {
+            const c = document.getElementById("container");
+            this.arr[5][5].type = 1;
+            for (let i = 0; i < this.height; i++) {
+                for (let j = 0; j < this.width; j++) {
+                    const div = document.createElement("div");
+                    div.classList.add("pice");
+                    div.setAttribute("id", ""+this.arr[j][i].x+this.arr[j][i].y)
+                    div.innerText = this.arr[j][i].type
+                    c.append(div);
+                }
+            }
+        },
+        snekmove(){
+            for (let i = 0; i < this.height; i++) {
+                for (let j = 0; j < this.width; j++) {
+                    if(this.arr[i][j].type>0){
+                        document.getElementById(""+this.arr[j][i].x+this.arr[j][i].y).classList.add("snek")
+                    }
+                }
+            }
+        }
+    }
+    game.init();
+    document.getElementById("body").onkeydown = function(){
+        game.snekmove();
+    }
+</script>
+</body>
+</html>
