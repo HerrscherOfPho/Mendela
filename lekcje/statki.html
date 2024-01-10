@@ -13,6 +13,8 @@
     </style>
 </head>
 <body>
+    <table id="u" style="float: left;"></table>
+    <table id="t" style="float: left; padding-left: 40px;"></table>
     <script>
         /*
         let t="";
@@ -30,7 +32,7 @@
         */
 
         //for tworzący tabelkę
-        const t=document.createElement("table");
+        // const t=document.createElement("table");
         let tablicaxy = [] //tablica współrzędnych
         for(i=0;i<10;i++){
                 const tr = document.createElement("tr");
@@ -44,9 +46,27 @@
                     tablicaxy[nrid]=0
 
                 }
-                t.append(tr);
+                document.getElementById("t").append(tr);
             }
-            document.body.append(t);
+            // document.body.append(t);
+
+        // const u=document.createElement("table");
+        let tablicaxy2 = [] //tablica współrzędnych
+        for(i=0;i<10;i++){
+                const tr = document.createElement("tr");
+                for(j=0;j<10;j++){
+                    const td=document.createElement("td")
+                    let nrid2 = ''+0+i+j
+                    td.id=nrid2
+                    td.classList.add("pole")
+                    tr.append(td);
+                    //dodajemy dane do tablicy współrzędnych
+                    tablicaxy2[nrid2]=0
+
+                }
+                document.getElementById("u").append(tr);
+            }
+            // document.body.append(u);
             //i => y, j => x
         
         // //losowanie jednego pola
