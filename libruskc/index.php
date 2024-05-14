@@ -38,22 +38,30 @@ $res = str_replace('<td  class="center">&nbsp;<img class="tooltip helper-icon" a
 $res = str_replace('<td colspan="2"  class="colspan center"><span>Koniec roku</span></td></tr>','',$res);
 //tu znikają style, wyciągam same tabelki
 preg_match_all('/<table class="decorated stretch">([\s\S]*)/',$res,$code);
-//usunięcie kodu nad tabelkami
+preg_match_all('/<link rel="stylesheet" .*(\/>|type="text\/css">|media="screen">)/U',$res,$style);
+$style = implode($style[0]);
+// //usunięcie kodu nad tabelkami
 $res = $code[0][0];
+$res = $style.$res;
 $res = preg_replace('/<script type="text\/javascript">([\s\S]*?)g ocen<\/option><\/select><\/td><\/tr><\/table><\/td><\/tr><\/table><\/div>/','',$res);
-//usunięcie kodu między tabelkami
+// //usunięcie kodu między tabelkami
 $res = preg_replace('/<div class="legend left stretch">([\s\S]*)/','',$res);
-//usunięcie kodu pod tabelkami
+// //usunięcie kodu pod tabelkami
 $res = preg_replace('/<img[^>]*>/','',$res);
-//usunięcie zdjęć z tabelki
+// //usunięcie zdjęć z tabelki
+$res = str_replace(["\n","\r","\n\r","\t"],"",$res);
 $res = str_replace('<table class="decorated stretch"','znacznik <table class="decorated stretch"',$res);
 $res = preg_replace('/znacznik/','',$res,1);
 preg_match_all('/(?<=znacznik).*/s', $res, $tabelka_punktowe);
+preg_match_all('/.*znacznik/', $res, $tabelka_zwykle);
 ///////////pod $res są obie tabelki, pod $tabelka_punktowe tylko punktowe
-$tabelka_punktowe = $tabelka_punktowe[0][0];
-$tabelka_punktowe = preg_replace("/<tr class='l.*?Brak ocen.*?<\/table><\/td><\/tr>/",'',$tabelka_punktowe);
-//last update: jak usunąć wszystkie z brak ocen, to coś nie działa, spróbuj usunąć line terminators ale nie jestem pewna czy to to
-echo $tabelka_punktowe;
+$tabelka_punktowe = $style.$tabelka_punktowe[0][0];
+$tabelka_zwykle = $tabelka_zwykle[0][0];
+//<tr class='line.'>\s*<td class='center micro screen-only'>\s*<\/td>\D*Br
+//$tabelka_punktowe = preg_replace("/<tr class='line.*?Brak ocen.*?<\/table><\/td><\/tr>/",'',$tabelka_punktowe);
+
+//last update: "<a.*>\d<\/a>" to jest na a w których są oceny, trzeba ogarnąć co to xpath i jak go uyć
+echo $res;
 exit(0);
 
 
